@@ -1,0 +1,118 @@
+<p>UNO alumno works!</p>
+
+<div class="card mt-5">
+    <div class="card-body">
+
+        <!-- Cuando el evento onSubmit , suceda se va pasar todo el formulario 'productForm' -->
+        <form #alumnoForm="ngForm" (ngSubmit)="onSubmit(alumnoForm)">
+
+            <!-- TO UPDATE -->
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="alumnoService.selectedAlumno.$key">
+
+            <div class="form-group">
+                <input required type="text" class="form-control" name="name" #name="ngModel"
+                    [(ngModel)]="alumnoService.selectedAlumno.name" placeholder="Nombre" minlength="3"
+                    pattern="[a-zA-Z ]{2,254}">
+            </div>
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+                <div *ngIf="name.errors.required">
+                    Nombre es requerido.
+                </div>
+                <div *ngIf="name.errors.minlength">
+                    El nombre tiene que tener al menos 3 Caracteres
+                </div>
+                <div *ngIf="name.errors.pattern">
+                    Solo letras
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="lastname" #lastname="ngModel" required
+                    [(ngModel)]="alumnoService.selectedAlumno.lastname" placeholder="Apellido" minlength="3"
+                    pattern="[a-zA-Z ]{2,254}">
+            </div>
+            <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="alert alert-danger">
+
+                <div *ngIf="lastname.errors.required">
+                    Apellido es requerido.
+                </div>
+                <div *ngIf="lastname.errors.minlength">
+                    El Apellido tiene que tener al menos 3 Caracteres
+                </div>
+                <div *ngIf="lastname.errors.pattern">
+                    Solo letras
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="direccion" #direccion="ngModel"
+                    [(ngModel)]="alumnoService.selectedAlumno.direccion" placeholder="Direccion"
+                    required minlength="5">
+            </div>
+            <div *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)" class="alert alert-danger">
+
+                <div *ngIf="direccion.errors.required">
+                    La direccion es requerida.
+                </div>
+                <div *ngIf="direccion.errors.minlength">
+                    La direccion tiene que tener al menos 5 Caracteres
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="number" class="form-control" name="age" #age="ngModel"
+                        [(ngModel)]="alumnoService.selectedAlumno.age" placeholder="Edad"
+                        required>
+                </div>
+            </div>
+            <div *ngIf="age.invalid && (age.dirty || age.touched)" class="alert alert-danger">
+
+                <div *ngIf="age.errors.required">
+                    La edad es requerida.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="telefono" #telefono="ngModel"
+                    [(ngModel)]="alumnoService.selectedAlumno.telefono" placeholder="Telefono"
+                    required pattern="[0-9]{4}-[0-9]{4}">
+            </div>
+            <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)" class="alert alert-danger">
+
+                <div *ngIf="telefono.errors.required">
+                    El telefono es requerida.
+                </div>
+                <div *ngIf="telefono.errors.pattern">
+                    Telfono invalido ####-####
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="correo" #correo="ngModel"
+                    [(ngModel)]="alumnoService.selectedAlumno.correo" placeholder="Correo"
+                    requerido pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+            </div>
+            <div *ngIf="correo.invalid && (correo.dirty || correo.touched)" class="alert alert-danger">
+
+                <div *ngIf="correo.errors.required">
+                    El email es requerido.
+                </div>
+                <div *ngIf="correo.errors.pattern">
+                    Formato de correo invalido
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" [disabled]="!alumnoForm.form.valid">
+                    <i class="fas fa-plus-circle"></i> Agrega alumno
+                </button>
+                <button class="btn btn-secondary" type="reset" (click)="resetForm(alumnoForm)">
+                    <i class="fas fa-sync-alt"></i> Reset
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

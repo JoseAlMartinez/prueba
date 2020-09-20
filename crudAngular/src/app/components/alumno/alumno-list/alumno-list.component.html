@@ -1,0 +1,30 @@
+<p>product-list works!</p>
+
+<div class="card">
+    <div class="card-body">
+        <h6 class="text-center">
+            List of alumnos
+        </h6>
+        <table class="table table-sm table-hover">
+            <tbody>
+                <tr *ngFor="let alumno of alumnoList">
+                    <td>{{alumno.$key}}</td>              
+                    <td>{{alumno.name}}</td>
+                    <td>{{alumno.lastname}}</td>
+                    <td>{{alumno.direccion}}</td>
+                    <td>{{alumno.age}}</td>
+                    <td>{{alumno.telefono}}</td>
+                    <td>{{alumno.correo}}</td>
+                    <td>
+                        <a class="btn btn-secondary text-white" (click)="onEdit(alumno)">
+                            <i class="far fa-edit"></i>
+                        </a>
+                        <a class="btn btn-danger text-white" (click)="onDelete(alumno.$key)">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
